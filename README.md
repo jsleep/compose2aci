@@ -68,3 +68,7 @@ Some instructions:
 * put them under games/<game_name>/compose.yaml
 * make sure that cpu+memory (in numeric format) are requested - i normally have to adjust.
 * test the conversion script and try to deploy - there may be some small issues to resolve in either compose file or even the adaption script.
+
+## Future
+* Potentially use Terraform so we can create templates for all cloud provider instead of just Azure
+* Be on the lookout for a discord bot docker that you can deploy and have your friends start/stop your hosted game servers.
