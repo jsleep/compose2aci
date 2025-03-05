@@ -1,0 +1,18 @@
+services:
+  valheim:
+    image: lloesche/valheim-server
+    ports:
+      - "2456-2457:2456-2457/udp"
+    environment:
+      SERVER_NAME: ${server_name}
+      WORLD_NAME: ${world_name}
+      SERVER_PASS: ${server_password}
+    restart: always
+    stop_grace_period: 2m
+    deploy:
+      resources:
+        requests:
+          cpus: 2
+          memory: 4
+    volumes:
+     - valheim:/config

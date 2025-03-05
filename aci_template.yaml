@@ -1,0 +1,33 @@
+# adapt valheim yaml and make it generic for any game container
+type: Microsoft.ContainerInstance/containerGroups
+apiVersion: 2019-12-01 #update this to the latest version?
+location: ${location}
+name: ${game_name}
+properties:
+  osType: Linux
+  # assumes file share has already been set up
+  volumes:
+  - name: ${game_name}-data
+    azureFile:
+      shareName: ${game_name}
+      storageAccountName: ${storage_account_name}
+      storageAccountKey: ${storage_account_key}
+  ipAddress:
+    type: Public
+    dnsNameLabel: ${server_name}-${game_name}
+    # ports should just be a list.. of dicts?
+    ports: ${ports}
+  containers:
+    - name: ${game_name}
+      properties:
+        image: ${image}
+        environmentVariables: ${game_env}
+        ports: ${ports}
+        resources: ${resources}
+        volumeMounts:
+          - name: ${game_name}-data
+            mountPath: ${mount_path}
+  imageRegistryCredentials: # Credentials to pull a private image
+  - server: index.docker.io
+    username: ${dockerhub_username}
+    password: ${dockerhub_password}

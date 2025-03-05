@@ -1,0 +1,22 @@
+services:
+  enshrouded:
+    image: mornedhels/enshrouded-server:latest
+    container_name: enshrouded
+    hostname: enshrouded
+    restart: unless-stopped
+    stop_grace_period: 90s
+    ports:
+      - "15637:15637/udp"
+    volumes:
+      - ./enshrouded:/opt/enshrouded # mount_path
+    environment:
+      SERVER_NAME: ${server_name}
+      SERVER_PASSWORD: ${server_password}
+      UPDATE_CRON: "*/30 * * * *"
+      PUID: 4711
+      PGID: 4711
+    deploy:
+     resources:
+       requests:
+         cpus: 6
+         memory: 16

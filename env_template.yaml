@@ -1,0 +1,11 @@
+# server name + pass
+server_name: <your_server_name>
+server_password: <your_server_password>
+location: <your_location>
+resource_group: <your_resource_group>
+# storage account name + pass
+storage_account_name: <your_storage_account_name>
+storage_account_key: <your_storage_account_key>
+# dockerhub username + pass
+dockerhub_username: <your_dockerhub_username>
+dockerhub_password: <your_dockerhub_password>

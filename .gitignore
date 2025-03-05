@@ -1,0 +1,4 @@
+# these files will include secrets and resource information
+.env
+env.yaml
+aci.yaml

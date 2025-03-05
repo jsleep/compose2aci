@@ -1,0 +1,44 @@
+# https://jakelunn.medium.com/host-a-valheim-dedicated-server-using-azure-container-instances-81d35b061f08
+type: Microsoft.ContainerInstance/containerGroups
+apiVersion: 2019-12-01
+location: <YourAzureLocation>
+name: valheim
+properties:
+  osType: Linux
+  volumes:
+  - name: valheim-server-data
+    azureFile:
+      shareName: <YourFileShareName>
+      storageAccountName: <YourStorageAccountName>
+      storageAccountKey: <YourStorageAccountKey>
+  ipAddress:
+    type: Public
+    dnsNameLabel: ${project_name}-valheim
+    ports:
+      - port: 2456
+        protocol: udp
+      - port: 2457
+        protocol: udp
+  containers:
+    - name: valheimserver
+      properties:
+        image: lloesche/valheim-server
+        environmentVariables:
+          - name: SERVER_NAME
+            value: ${project_name}
+          - name: WORLD_NAME
+            value: ${project_name}
+          - name: SERVER_PASS
+            value: ${server_password}
+        ports:
+          - port: 2456
+            protocol: udp
+          - port: 2457
+            protocol: udp
+        resources:
+          requests:
+            cpu: 2
+            memoryInGb: 4
+        volumeMounts:
+          - name: valheim-server-data
+            mountPath: /config
