@@ -7,7 +7,7 @@ A lot of folks have $150/month azure dev credits so I made this repo for people 
 ## Setup
 ### Pre-Reqs:
 1. [Install Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
-2. [Install Python]()
+2. [Install Python](https://www.python.org/downloads/)
 
 ### Instructions
 1. pip install -r requirements.txt
@@ -37,7 +37,6 @@ storage_account_key: <your_storage_account_key>
 # dockerhub username + pass (to get around anonymous azure rate limiting from dockerhub)
 dockerhub_username: <your_dockerhub_username>
 dockerhub_password: <your_dockerhub_password>
-
 ```
 6. Per each game, convert each game docker compose yaml into ACI yaml, create fileshare for that game and deploy it
 ```bash
