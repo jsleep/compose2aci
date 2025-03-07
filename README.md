@@ -5,9 +5,12 @@ Converting Game Docker Compose files to Azure Container Instances, and instructi
 A lot of folks have $150/month azure dev credits so I made this repo for people to easily deploy their own game servers. Unfortunately, Azure lost direct Docker Compose deployment - but I created this script to easily convert Docker Compose yaml files (easily found for most online hostable games) into Azure Container Instance Yaml Files and instructions below to easily deploy each server attached to Fileshare storage.
 
 ## Setup
-
+### Pre-Reqs:
 1. [Install Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
-2. pip install -r requirements.txt
+2. [Install Python]()
+
+### Instructions
+1. pip install -r requirements.txt
 3. Create a fileshare storage in Azure with the following command:
 ```bash
 g=<resouce_group>
@@ -34,6 +37,7 @@ storage_account_key: <your_storage_account_key>
 # dockerhub username + pass (to get around anonymous azure rate limiting from dockerhub)
 dockerhub_username: <your_dockerhub_username>
 dockerhub_password: <your_dockerhub_password>
+
 ```
 6. Per each game, convert each game docker compose yaml into ACI yaml, create fileshare for that game and deploy it
 ```bash
